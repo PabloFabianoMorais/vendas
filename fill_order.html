@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="fill_order.css">
+</head>
+
+<body>
+  <table id="order">
+    <tr>
+      <th class="cell-header" colspan="4">
+        <img src="img.png" style="background-color: white; height: 100px; border-radius: 20px;">
+        <div>37 98836-4228 / 37 99969-9738</div>
+      </th>
+    </tr>
+    <tr>
+      <th class="cell-header" id="endress" colspan="10">Rua Dinamarca, 155, apto202, Paraíso, Divinópolis- MG /
+        CEP:35500-512</th>
+    </tr>
+    <tr>
+      <th colspan="10" class="topic">Seu Pedido</th>
+    </tr>
+    <tr>
+      <td id="order-id">Pedido:</td>
+      <td>
+        <label for="date">Data de criação do pedido:</label>
+        <input id="date" type="date">
+      </td>
+      <td>
+        <label>Status do pedido:</label>
+        <select id="status">
+          <option style="background-color: orange;">Aguardando pagamento</option>
+          <option style="background-color: green;">Pago</option>
+          <option style="background-color: yellow;">Em produção</option>
+          <option style="background-color: gray;">Enviado</option>
+          <option style="background-color: lightblue;">Entregue</option>
+          <option style="background-color: lightgreen;">Feedback positivo</option>
+          <option style="background-color: pink;">Feedback negativo</option>
+          <option style="background-color: red;">Cancelado</option>
+          <option style="background-color: blue;">Sinal pago</option>
+          <option style="background-color: rgb(255,200,100);">Aguardando pagamento</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4" id="datas">
+        <textarea id="client-datas" placeholder="Dados do cliente"></textarea>
+      </td>
+      <td>
+        <label for="channel">Canal de venda:</label>
+        <input id="channel" type="text">
+      </td>
+      <td>
+        <label for="divulgation">Meio de divulgação:</label>
+        <input id="divulgation" type="text">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="delliver">Meio de entrega:</label>
+        <input id="delliver" type="text">
+      </td>
+      <td>
+        <label for="previous-date">Data prevista:</label>
+        <input id="previous-date" type="date">
+      </td>
+    </tr>
+    <tr>
+      <td id="alert" colspan="2">AVISO: A data de entrega pode ter variações, pois depende do prazo de produção do seu
+        pedido e de entrega dos correios.</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <label for="cep">CEP:</label>
+        <input id="cep" type="text">
+      </td>
+    </tr>
+    <tr>
+      <th colspan="10" class="topic">Seus Produtos
+        <button id="add-button" onclick="addProduct()">+</button>
+      </th>
+    </tr>
+    <tr>
+      <td>Cod.</td>
+      <td>Descrição</td>
+      <td>Preço</td>
+    </tr>
+    <tr>
+      <td>
+        <ul id="cod-list"></ul>
+      </td>
+      <td>
+        <ul id="name-list"></ul>
+      </td>
+      <td>
+        <ul id="price-list"></ul>
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td rowspan="2">
+        <input id="promotion" type="checkbox">
+        <label id="discount-text"></label>
+      </td>
+      <td>
+        <label for="payment">Forma de pagamento</label>
+      </td>
+      <td id="operations" rowspan="2">
+        <li>(=)</li>
+        <li>Desconto (-)</li>
+        <li>Frete (+)</li>
+      </td>
+      <td rowspan="2">
+        <li id="soma" class="final">R$0,00</li>
+        <li class="final"><input id="discount" type="number"></li>
+        <li class="final"><input id="frete" type="number"></li>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <select id="payment">
+          <option>Cartão de crédito</option>
+          <option>Cartão de débito</option>
+          <option>Pix</option>
+          <option>Dinheiro</option>
+          <option>Transferência</option>
+          <option>Depósito</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="10">
+        <div class="final" id="total"></div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div class="final">
+          Entrada em:
+          <input id="start-payday" type="date">
+          <input id="start-pay-value" type="number">
+          <div class="checkbox-payment">
+            <input id="start-pay" type="checkbox">
+            <label for="start-pay">Pago</label>
+          </div>
+        </div>
+      </td>
+      <td colspan="2">
+        <div class="final">
+          Recebido em:
+          <input id="final-payday" type="date">
+          <input id="final-pay-value" type="number">
+          <div class="checkbox-payment">
+            <input id="final-pay" type="checkbox">
+            <label for="final-pay">Pago</label>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <input type="checkbox">
+  <table id="seller-table">
+    <tr>
+      <td>TAXAS</td>
+      <td>0,00</td>
+      <td>0,00</td>
+      <td>0,00</td>
+      <td rowspan="2">imp: 0,00</td>
+      <td rowspan="2">M. O.: 0,00</td>
+      <td rowspan="2">C. G.: 0,00</td>
+      <td rowspan="2">L.: 0,00</td>
+    </tr>
+    <tr>
+      <td colspan="4">Recebi: 0,00</td>
+    </tr>
+  </table>
+  <input type="file" id="image-input" multiple>
+  <ul id="image-list"></ul>
+
+  <textarea placeholder="Anotações" id="notes"></textarea>
+  <script src="fill_order.js"></script>
+</body>
+
+</html>
